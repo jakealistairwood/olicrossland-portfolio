@@ -2,7 +2,7 @@ import "./Navbar.scss";
 
 function Navbar() {
 	return (
-		<header className="navbar" id="navbar">
+		<header className="navbar container" id="navbar">
 			<nav className="navbar__nav-links">
 				<ul>
 					<li className="navbar__nav-link">
