@@ -1,0 +1,23 @@
+@use "../../assets/styles/abstract/variables" as *;
+
+.portfolio__filters {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .btn-filter {
+        font-size: 0.8rem;
+        padding: 0.5em;
+        min-height: 2em;
+        min-width: 6em;
+        width: unset;
+        background-color: transparent;
+        border: 1px solid $secondary;
+
+        &--active {
+            background-color: #7EFFC9;
+            color: $primary;
+            border-color: #7EFFC9;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+@use "../../assets/styles/abstract/variables" as *;
+
+.project {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    padding: 3rem 3rem 1.5rem;
+
+    h3 {
+        font-size: 2rem;
+        letter-spacing: -1px;
+        font-weight: 500;
+    }
+
+    h4 {
+        text-transform: uppercase;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    &__tags {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    &__tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        border: 1px solid $secondary;
+        padding: 0.5em 0.8em;
+        border-radius: 1000px;
+    }
+  }

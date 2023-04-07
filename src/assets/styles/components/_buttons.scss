@@ -1,0 +1,49 @@
+@use "../abstract/variables" as *;
+@use "../mixins/layout" as *;
+
+.btn {
+    border-radius: 1000px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    letter-spacing: -1px;
+    font-size: 1rem;
+    color: $secondary;
+    padding: 0.625em 0.9375em;
+    transition: background-color color 0.3s ease;
+    @include flexbox(column, center, center);
+    position: relative;
+    overflow: hidden;
+    width: 10em;
+    min-height: 40px;
+
+    .text {
+        position: absolute;
+        transition: transform 0.3s ease;
+
+        &--one {
+            transform: translateY(0);
+        }
+        &--two {
+            transform: translateY(-50px);
+        }
+    }
+    &:hover {
+        .text {
+            &--one {
+                transform: translateY(50px);
+            }
+            &--two {
+                transform: translateY(0);
+            }
+        }
+    }
+}
+
+.btn-primary {
+    border: 1px solid $secondary;
+
+    &:hover {
+        background-color: $secondary;
+        color: $primary;
+    }
+}
