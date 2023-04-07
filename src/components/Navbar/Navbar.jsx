@@ -2,17 +2,17 @@ import "./Navbar.scss";
 
 function Navbar() {
 	return (
-		<header className="navbar">
+		<header className="navbar" id="navbar">
 			<nav className="navbar__nav-links">
 				<ul>
 					<li className="navbar__nav-link">
 						<a href="">Home</a>
 					</li>
 					<li className="navbar__nav-link">
-						<a href="">About</a>
+						<a href="#about-section">About</a>
 					</li>
 					<li className="navbar__nav-link">
-						<a href="">Work</a>
+						<a href="#portfolio-section">Work</a>
 					</li>
 					<li className="navbar__nav-link">
 						<a href="">Mixes</a>

@@ -31,6 +31,8 @@ import imgThree from "./assets/img/image-3.png";
 import imgFour from "./assets/img/image-4.png";
 import Selfie from "./assets/img/selfie.png";
 import { ReactComponent as ScrollIndicator } from "./assets/img/scroll-down-indicator.svg";
+import { ReactComponent as DecorEl } from "./assets/img/decor-element.svg";
+
 import Project from "./components/Project/Project";
 
 function App({ ref }) {
@@ -64,9 +66,10 @@ function App({ ref }) {
 
 
 	return (
-      <div className="App container">
+      <div className="App">
         <Navbar />
-        <section className="hero">
+        <section className="hero" id="hero-section">
+          <DecorEl />
           <h1>
             <span>Digital Obsessive &</span>
             <span>Creative Videographer</span>
@@ -90,15 +93,18 @@ function App({ ref }) {
             </div>
           </div>
         </section>
-        <section className="about">
+        <section className="about container" id="about-section">
           <header className="about__header">
             <p>About me</p>
             <h2>
-              <span>Capturing engaging and </span>
-              <span>intimate narratives via the </span>
-              <span>
-                medium of <span className="sketch">video</span>
-              </span>
+              <p>Capturing engaging and </p>
+              <p>intimate narratives via the </p>
+              <p>
+                medium of 
+                <p className="sketch">
+                  <span> video</span>
+                </p>
+              </p>
             </h2>
           </header>
           <div className="about__body">
@@ -136,7 +142,7 @@ function App({ ref }) {
             </div>
           </div>
         </section>
-        <section className="featured">
+        <section className="featured container">
           <MediaPlayer
             src="https://media-files.vidstack.io/720p.mp4"
             poster="https://media-files.vidstack.io/poster.png"
@@ -146,7 +152,7 @@ function App({ ref }) {
             <MediaOutlet />
           </MediaPlayer>
         </section>
-        <section className="portfolio">
+        <section className="portfolio container" id="portfolio-section">
           <h2>My work</h2>
           <Filters
             projects={projects}
@@ -163,7 +169,7 @@ function App({ ref }) {
             </AnimatePresence>
           </motion.div>
         </section>
-        <section className="experiences">
+        <section className="experiences container">
           <h2>Experiences</h2>
           {experiences.map((experience) => {
             return (
@@ -183,8 +189,11 @@ function App({ ref }) {
           })}
         </section>
         <section className="gallery">
+          <div className="decor-el-container">
+            <DecorEl />
+          </div>
           <h2>Gallery</h2>
-          <div className="swiper">
+          <div className="swiper container">
             {/* <div className="swiper-wrapper">
               {gallery.map(img => {
                 return <Swiper>
@@ -207,7 +216,8 @@ function App({ ref }) {
               grabCursor={true}
               watchOverflow={true}
               onSlideChange={() => console.log("slide changed")} 
-              centeredSlides={true}
+              centeredSlides={false}
+              centerInsufficientSlides={true}
               initialSlide={1}
             >
               {gallery.map(img => {
@@ -222,7 +232,7 @@ function App({ ref }) {
             </div>
           </div>
         </section>
-        <section className="contact">
+        <section className="contact container">
           <div className="contact__banner">
             <h2>Get in touch</h2>
             <p>
@@ -234,11 +244,12 @@ function App({ ref }) {
               className="btn btn-primary"
               href="mailto:olicrossland@gmail.com"
             >
-              Get in touch
+              <span class="text text--one">Get in touch</span>
+              <span class="text text--two">Get in touch</span>
             </a>
           </div>
         </section>
-        <footer className="footer">
+        <footer className="footer container">
           <small className="footer__copyright">
             &copy; Oli Crossland | 2023
           </small>
@@ -248,7 +259,7 @@ function App({ ref }) {
           >
             olicrossland@gmail.com
           </a>
-          <a className="footer__scroll-btn" href="#">
+          <a className="footer__scroll-btn" href="#navbar">
             <span>Back to top</span>
           </a>
         </footer>
