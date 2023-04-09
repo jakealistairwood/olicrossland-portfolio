@@ -4,9 +4,8 @@ import "./App.scss";
 import { projectsData } from "./data/projects";
 import { experiences } from "./data/experiences";
 import { gallery } from "./data/gallery";
-// import useLocoScroll from "./hooks/useLocoScroll";
+import useLocoScroll from "./hooks/useLocoScroll";
 import LocomotiveScroll from "locomotive-scroll";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import "locomotive-scroll/src/locomotive-scroll.scss";
 import gsap from "gsap";
 
@@ -41,6 +40,8 @@ import { ReactComponent as DecorEl } from "./assets/img/decor-element.svg";
 import Project from "./components/Project/Project";
 import Experience from "./components/Experiences/Experiences";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Contact from "./components/Contact/Contact";
+import Footer from "./components/Footer/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,18 +76,20 @@ function App() {
 	let filteredTags = removeDuplicatedCategories(categories);
 	console.log(filteredTags);
 
-  useEffect(() => {
-    const scrollElement = new LocomotiveScroll({
-      el: ref.current,
-      smooth: true,
-      smartphone: {
-        smooth: true
-      },
-      getDirection: true,
-      getSpeed: true
-    })
+  // useEffect(() => {
+  //   const scrollElement = new LocomotiveScroll({
+  //     el: ref.current,
+  //     smooth: true,
+  //     smartphone: {
+  //       smooth: true
+  //     },
+  //     getDirection: true,
+  //     getSpeed: true
+  //   })
 
-  }, []);
+  // }, []);
+
+  useLocoScroll(true);
 
 	useEffect(() => {
 		setFilteredProjects(projectsData);
@@ -249,42 +252,13 @@ function App() {
               })}
             </Swiper>
             <div className="swiper-buttons">
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
             </div>
           </div>
         </section>
-        <section className="contact container" data-scroll-section>
-          <div className="contact__banner">
-            <h2>Get in touch</h2>
-            <p>
-              Please don't hesitate to drop me an email if you have
-              any questions or would like to know what kind of
-              services I can offer.
-            </p>
-            <a
-              className="btn btn-primary"
-              href="mailto:olicrossland@gmail.com"
-            >
-              <span class="text text--one">Get in touch</span>
-              <span class="text text--two">Get in touch</span>
-            </a>
-          </div>
-        </section>
-        <footer className="footer container">
-          <small className="footer__copyright">
-            &copy; Oli Crossland | 2023
-          </small>
-          <a
-            className="footer__email"
-            href="mailto:olicrossland@gmail.com"
-          >
-            olicrossland@gmail.com
-          </a>
-          <a className="footer__scroll-btn" href="#navbar">
-            <span>Back to top</span>
-          </a>
-        </footer>
+        <Contact />
+        <Footer />
       </div>
 	);
 }

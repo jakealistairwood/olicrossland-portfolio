@@ -1,0 +1,30 @@
+@use "../../assets/styles/mixins/layout" as *;
+@use "../../assets/styles/mixins/media-query" as *;
+
+.footer {
+	@include flexbox(row, space-between, center);
+	padding-block: 2rem;
+	border-top: 1px solid #505050;
+	position: relative;
+
+	@include for-mobiles-down {
+		flex-direction: column;
+		row-gap: 2rem;
+	}
+
+	&__email {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	* {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+	}
+
+	&__copyright,
+	&__scroll-btn {
+		opacity: 0.3;
+	}
+}

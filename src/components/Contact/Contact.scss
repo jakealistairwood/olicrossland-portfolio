@@ -1,0 +1,41 @@
+@use "../../assets/styles/abstract/variables" as *;
+@use "../../assets/styles/mixins/layout" as *;
+@use "../../assets/styles/mixins/media-query" as *;
+
+.contact {
+    @include flexbox(row, center, center);
+    padding-block: 10rem;
+    &__banner {
+      @include flexbox(column, flex-start, center);
+      text-align: center;
+  
+      @include for-mobiles-down {
+        row-gap: 1.5rem;
+      }
+      
+      h2 {
+        font-size: 6.5rem;
+        font-family: $impact-font;
+        text-transform: uppercase;
+        line-height: 1.2;
+  
+        @include for-mobiles-down {
+          font-size: 3rem;
+        }
+      }
+  
+      p {
+        width: 70%;
+        margin-bottom: 2rem;
+  
+        @include for-mobiles-down {
+          width: 90%;
+        }
+      }
+  
+      .btn-primary {
+        background-color: $secondary;
+        color: $primary;
+      }
+    }
+  }
