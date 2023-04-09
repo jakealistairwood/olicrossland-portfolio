@@ -30,12 +30,17 @@ function Navbar() {
 					<li className="navbar__nav-link">
 						<a href="">Mixcloud</a>
 					</li>
-					<a className="btn btn-primary nav-btn">
+					<a className="btn btn-primary nav-btn" href="mailto:olicrossland@gmail.com">
                         <span className="text text--one">Get in touch</span>
                         <span className="text text--two">Get in touch</span>
                     </a>
 				</ul>
 			</nav>
+			<button className="navbar__mobile-nav-toggler">
+				<div className="line"></div>
+				<div className="line"></div>
+				<div className="line"></div>
+			</button>
 		</header>
 	);
 }

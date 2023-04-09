@@ -1,0 +1,17 @@
+.experience {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-block: 2rem;
+    border-bottom: 1px solid #505050;
+
+    &__role {
+      display: flex;
+      flex-direction: column;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+    }
+  }

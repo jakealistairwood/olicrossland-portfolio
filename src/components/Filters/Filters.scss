@@ -1,9 +1,14 @@
 @use "../../assets/styles/abstract/variables" as *;
+@use "../../assets/styles/mixins/media-query" as *;
 
 .portfolio__filters {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    @include for-mobiles-down {
+        flex-wrap: wrap;
+    }
 
     .btn-filter {
         font-size: 0.8rem;

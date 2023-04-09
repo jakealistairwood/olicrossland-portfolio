@@ -1,0 +1,17 @@
+@use "../abstract/variables" as *;
+
+@mixin for-sm-desktop {
+    @media screen and (max-width: 1400px) {
+        @content;
+    }
+}
+@mixin for-tablets-down {
+    @media screen and (max-width: 992px) {
+        @content;
+    }
+}
+@mixin for-mobiles-down {
+    @media screen and (max-width: 576px) {
+        @content;
+    }
+}

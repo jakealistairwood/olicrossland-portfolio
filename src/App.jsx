@@ -4,9 +4,14 @@ import "./App.scss";
 import { projectsData } from "./data/projects";
 import { experiences } from "./data/experiences";
 import { gallery } from "./data/gallery";
+// import useLocoScroll from "./hooks/useLocoScroll";
+import LocomotiveScroll from "locomotive-scroll";
+import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import "locomotive-scroll/src/locomotive-scroll.scss";
+import gsap from "gsap";
 
 // Framer
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, LayoutGroup } from "framer-motion";
 
 // Locomotive Scroll
 // import { LocomotiveScrollProvider } from "react-locomotive-scroll";
@@ -34,11 +39,21 @@ import { ReactComponent as ScrollIndicator } from "./assets/img/scroll-down-indi
 import { ReactComponent as DecorEl } from "./assets/img/decor-element.svg";
 
 import Project from "./components/Project/Project";
+import Experience from "./components/Experiences/Experiences";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
-function App({ ref }) {
+gsap.registerPlugin(ScrollTrigger);
+
+function App() {
 	const [projects, setProjects] = useState(projectsData);
 	const [filteredProjects, setFilteredProjects] = useState([]);
 	const [activeFilter, setActiveFilter] = useState("All");
+
+  let ref = useRef(null);
+
+  let lsOptions = {
+    smooth: true,
+  }
 
 	console.log(projects);
 
@@ -60,40 +75,53 @@ function App({ ref }) {
 	let filteredTags = removeDuplicatedCategories(categories);
 	console.log(filteredTags);
 
+  useEffect(() => {
+    const scrollElement = new LocomotiveScroll({
+      el: ref.current,
+      smooth: true,
+      smartphone: {
+        smooth: true
+      },
+      getDirection: true,
+      getSpeed: true
+    })
+
+  }, []);
+
 	useEffect(() => {
 		setFilteredProjects(projectsData);
 	}, []);
 
 
 	return (
-      <div className="App">
+      <div className="App" ref={ref} data-scroll-container>
         <Navbar />
-        <section className="hero" id="hero-section">
+        <section className="hero" id="hero-section" data-scroll-section>
           <DecorEl />
-          <h1>
+          <h1 data-scroll>
             <span>Digital Obsessive &</span>
             <span>Creative Videographer</span>
           </h1>
           <a className="btn btn-primary">
-            <span className="text text--one">Scroll for more</span>
-            <span className="text text--two">Scroll for more</span>
+            <span className="text text--one">Scroll  for  more</span>
+            <span className="text text--two">Scroll  for  more</span>
           </a>
           <div className="hero__images">
-            <div className="hero__img">
+            <div className="hero__img" data-scroll data-scroll-speed="3">
               <img src={imgFour} alt="penguins" />
             </div>
-            <div className="hero__img">
+            <div className="hero__img" data-scroll data-scroll-speed="1">
               <img src={imgTwo} alt="person filming" />
             </div>
-            <div className="hero__img">
+            <div className="hero__img" data-scroll data-scroll-speed="3">
               <img src={imgThree} alt="djing" />
             </div>
-            <div className="hero__img">
+            <div className="hero__img" data-scroll data-scroll-speed="1">
               <img src={imgOne} alt="music video filming" />
             </div>
           </div>
         </section>
-        <section className="about container" id="about-section">
+        <section className="about container" id="about-section" data-scroll-section>
           <header className="about__header">
             <p>About me</p>
             <h2>
@@ -142,7 +170,7 @@ function App({ ref }) {
             </div>
           </div>
         </section>
-        <section className="featured container">
+        <section className="featured container" data-scroll-section>
           <MediaPlayer
             src="https://media-files.vidstack.io/720p.mp4"
             poster="https://media-files.vidstack.io/poster.png"
@@ -152,7 +180,7 @@ function App({ ref }) {
             <MediaOutlet />
           </MediaPlayer>
         </section>
-        <section className="portfolio container" id="portfolio-section">
+        <section className="portfolio container" id="portfolio-section" data-scroll-section>
           <h2>My work</h2>
           <Filters
             projects={projects}
@@ -161,39 +189,33 @@ function App({ ref }) {
             tagSelected={activeFilter}
             setTagSelected={setActiveFilter}
           />
-          <motion.div layout className="portfolio__projects">
+          {/* <motion.div layout className="portfolio__projects" key="projectImage">
             <AnimatePresence>
               {filteredProjects.map((project) => {
                 return <Project key={uuid()} project={project} />;
               })}
             </AnimatePresence>
-          </motion.div>
+          </motion.div> */}
+          <LayoutGroup>
+            <div className="portfolio__projects">
+              {filteredProjects.map((project) => <Project key={uuid()} project={project} />)}
+            </div>
+          </LayoutGroup>
         </section>
-        <section className="experiences container">
+        <section className="experiences container" data-scroll-section>
           <h2>Experiences</h2>
           {experiences.map((experience) => {
             return (
-              <div className="experience">
-                <div className="experience__role">
-                  <h3>{experience.role}</h3>
-                  <p>@{experience.company}</p>
-                </div>
-                <div className="experience__date">
-                  <p>
-                    {experience.dateStarted} -{" "}
-                    {experience.dateEnded}
-                  </p>
-                </div>
-              </div>
+              <Experience key={uuid()} experience={experience} />
             );
           })}
         </section>
-        <section className="gallery">
+        <section className="gallery" data-scroll-section>
           <div className="decor-el-container">
             <DecorEl />
           </div>
           <h2>Gallery</h2>
-          <div className="swiper container">
+          <div className="swiper container" data-scroll>
             {/* <div className="swiper-wrapper">
               {gallery.map(img => {
                 return <Swiper>
@@ -232,7 +254,7 @@ function App({ ref }) {
             </div>
           </div>
         </section>
-        <section className="contact container">
+        <section className="contact container" data-scroll-section>
           <div className="contact__banner">
             <h2>Get in touch</h2>
             <p>

@@ -1,14 +1,26 @@
 @use "../../assets/styles/abstract/variables" as *;
 @use "../../assets/styles/mixins/layout" as *;
+@use "../../assets/styles/mixins/media-query" as *;
 
 .navbar {
     width: 100%;
     @include flexbox(row, space-between, center);
     position: relative;
+    z-index: 1000;
 
     &__nav-links {
         display: flex;
         align-items: center;
+        
+        @include for-mobiles-down {
+            display: none;
+            position: absolute;
+            top: 2rem;
+            
+            ul {
+                flex-direction: column !important;
+            }
+        }
 
         ul {
             @include flexbox(row, flex-start, center);
@@ -33,5 +45,21 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+
+        @include for-mobiles-down {
+            position: static;
+            transform: unset;
+        }
+    }
+    &__mobile-nav-toggler {
+        display: none;
+        
+        @include for-mobiles-down {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 3rem;
+            width: 3rem;
+        }
     }
 }
