@@ -6,10 +6,14 @@ function Project({ project }) {
 	return (
     <motion.a
       className="project"
+      layout
       whileInView={{ opacity: 1 }}
       initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 1, type: "spring", bounce: 0.25 }}
+      transition={{ layout: {
+        duration: 0.5 
+       } }}
       href="#"
       layoutid="fadeInOut"
       style={{

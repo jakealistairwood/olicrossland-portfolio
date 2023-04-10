@@ -31,9 +31,11 @@
         .text {
             &--one {
                 transform: translateY(50px);
+                text-decoration: underline;
             }
             &--two {
                 transform: translateY(0);
+                text-decoration: underline;
             }
         }
     }

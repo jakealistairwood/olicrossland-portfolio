@@ -51,6 +51,7 @@ function App() {
 	const [activeFilter, setActiveFilter] = useState("All");
 
   let ref = useRef(null);
+  let featuredRef = useRef(null);
 
   let lsOptions = {
     smooth: true,
@@ -76,25 +77,25 @@ function App() {
 	let filteredTags = removeDuplicatedCategories(categories);
 	console.log(filteredTags);
 
-  // useEffect(() => {
-  //   const scrollElement = new LocomotiveScroll({
-  //     el: ref.current,
-  //     smooth: true,
-  //     smartphone: {
-  //       smooth: true
-  //     },
-  //     getDirection: true,
-  //     getSpeed: true
-  //   })
-
-  // }, []);
-
   useLocoScroll(true);
 
 	useEffect(() => {
 		setFilteredProjects(projectsData);
 	}, []);
 
+  useEffect(() => {
+    console.log(featuredRef);
+    let featuredVideo = featuredRef.current;
+    gsap.to(featuredVideo, {
+      scrollTrigger: {
+        trigger: featuredVideo,
+        scroller: "[data-scroll-container]",
+        start: "center 20%",
+        end: "center 50%",
+        markers: true
+      }
+    })
+  }, []);
 
 	return (
       <div className="App" ref={ref} data-scroll-container>
@@ -105,7 +106,7 @@ function App() {
             <span>Digital Obsessive &</span>
             <span>Creative Videographer</span>
           </h1>
-          <a className="btn btn-primary">
+          <a className="btn btn-primary" href="#portfolio-section" data-scroll-to>
             <span className="text text--one">Scroll  for  more</span>
             <span className="text text--two">Scroll  for  more</span>
           </a>
@@ -125,7 +126,7 @@ function App() {
           </div>
         </section>
         <section className="about container" id="about-section" data-scroll-section>
-          <header className="about__header">
+          <header className="about__header" data-scroll data-scroll-speed="-1">
             <p>About me</p>
             <h2>
               <p>Capturing engaging and </p>
@@ -162,7 +163,7 @@ function App() {
                 venenatis. Suspendisse quis arcu sem. Aenean feugiat
                 ex eu vestibulum vestibulum.
               </p>
-              <a className="btn btn-secondary" href="">
+              <a className="btn btn-secondary" href="#contact-section" data-scroll-to>
                 <span className="text text--one">Get in touch</span>
                 <span className="text text--two">Get in touch</span>
               </a>
@@ -173,7 +174,7 @@ function App() {
             </div>
           </div>
         </section>
-        <section className="featured container" data-scroll-section>
+        <section className="featured container" ref={featuredRef} data-scroll-section>
           <MediaPlayer
             src="https://media-files.vidstack.io/720p.mp4"
             poster="https://media-files.vidstack.io/poster.png"
@@ -199,11 +200,13 @@ function App() {
               })}
             </AnimatePresence>
           </motion.div> */}
-          <LayoutGroup>
-            <div className="portfolio__projects">
-              {filteredProjects.map((project) => <Project key={uuid()} project={project} />)}
-            </div>
-          </LayoutGroup>
+          <div className="portfolio__projects">
+            <LayoutGroup>
+              <AnimatePresence>
+                {filteredProjects.map((project) => <Project key={uuid()} project={project} />)}
+              </AnimatePresence>
+            </LayoutGroup>
+          </div>
         </section>
         <section className="experiences container" data-scroll-section>
           <h2>Experiences</h2>
@@ -227,7 +230,15 @@ function App() {
               })}
             </div> */}
             <Swiper
-              slidesPerView={3}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                },
+                992: {
+                  slidesPerView: 3
+                }
+              }}
+              slidesPerView={1}
               spaceBetween={30}
               direction={"horizontal"}
               transition={"fade"}

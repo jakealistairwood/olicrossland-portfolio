@@ -1,4 +1,5 @@
 @use "../../assets/styles/abstract/variables" as *;
+@use "../../assets/styles/mixins/media-query" as *;
 
 .project {
     display: flex;
@@ -8,11 +9,23 @@
     aspect-ratio: 16/9;
     object-fit: cover;
     padding: 3rem 3rem 1.5rem;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    max-height: 320px;
+
+    @include for-mobiles-down {
+       padding: 2rem 1rem;
+    }
 
     h3 {
         font-size: 2rem;
         letter-spacing: -1px;
         font-weight: 500;
+        line-height: 1.1;
+
+        @include for-mobiles-down {
+            font-size: 1.4rem;
+        }
     }
 
     h4 {
@@ -21,17 +34,15 @@
         letter-spacing: 1px;
     }
 
-    &__image {
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-    }
-
     &__tags {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         margin-top: 1rem;
+
+        @include for-mobiles-down {
+            display: none;
+        }
     }
 
     &__tag {
@@ -40,5 +51,9 @@
         border: 1px solid $secondary;
         padding: 0.5em 0.8em;
         border-radius: 1000px;
+
+        @include for-mobiles-down {
+            font-size: 0.5rem;
+        }
     }
   }

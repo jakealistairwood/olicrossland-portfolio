@@ -18,6 +18,11 @@
         width: unset;
         background-color: transparent;
         border: 1px solid $secondary;
+        letter-spacing: 0;
+
+        @include for-mobiles-down {
+            font-size: 0.6rem;
+        }
 
         &--active {
             background-color: #7EFFC9;

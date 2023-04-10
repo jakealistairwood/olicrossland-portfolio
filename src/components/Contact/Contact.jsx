@@ -1,7 +1,7 @@
 import "./Contact.scss";
 
 function Contact() {
-    return <section className="contact container" data-scroll-section>
+    return <section className="contact container" id="contact-section" data-scroll-section>
     <div className="contact__banner">
       <h2>Get in touch</h2>
       <p>

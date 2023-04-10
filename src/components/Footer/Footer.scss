@@ -27,4 +27,12 @@
 	&__scroll-btn {
 		opacity: 0.3;
 	}
+
+    &__scroll-btn {
+        transition: opacity 0.4s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
 }

@@ -4,9 +4,15 @@
 
 .navbar {
     width: 100%;
-    @include flexbox(row, space-between, center);
-    position: relative;
     z-index: 1000;
+    background-color: rgba($primary, 0.6);
+    backdrop-filter: blur(10px);
+    position: relative;
+    
+    .navbar-wrapper {
+        @include flexbox(row, space-between, center);
+        position: relative;
+    }
 
     &__nav-links {
         display: flex;

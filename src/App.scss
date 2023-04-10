@@ -204,6 +204,11 @@ h2 {
       right: -150px;
       bottom: -50px;
 
+      @media screen and (max-width: 1440px) {
+        right: -100px;
+        width: 80%;
+      }
+
       @include for-mobiles-down {
         width: 40%;
         right: 0px;
@@ -258,7 +263,7 @@ h2 {
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: #303535;
+  background-color: #1c1e1e;
   padding-block: 6.25rem;
 
   .decor-el-container {
