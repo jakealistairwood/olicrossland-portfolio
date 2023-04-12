@@ -3,45 +3,28 @@ import uuid from "react-uuid";
 import "./App.scss";
 import { projectsData } from "./data/projects";
 import { experiences } from "./data/experiences";
-import { gallery } from "./data/gallery";
 import useLocoScroll from "./hooks/useLocoScroll";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/src/locomotive-scroll.scss";
 import gsap from "gsap";
+import AnimatedCursor from "react-animated-cursor";
+
+import { removeDuplicatedCategories } from "./assets/utils/helpers";
 
 // Framer
 import { AnimatePresence, AnimateSharedLayout, LayoutGroup } from "framer-motion";
 
-// Locomotive Scroll
-// import { LocomotiveScrollProvider } from "react-locomotive-scroll";
-
-// Swiper
-import { Navigation, EffectFade } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
-import "swiper/scss/navigation";
-import "swiper/scss/effect-fade";
-
-// Vidstack
-import "vidstack/styles/defaults.css";
-import { MediaOutlet, MediaPlayer } from "@vidstack/react";
-
-import Navbar from "./components/Navbar/Navbar";
 import Filters from "./components/Filters/Filters";
-
-import imgOne from "./assets/img/image-1.png";
-import imgTwo from "./assets/img/image-2.png";
-import imgThree from "./assets/img/image-3.png";
-import imgFour from "./assets/img/image-4.png";
-import Selfie from "./assets/img/selfie.png";
-import { ReactComponent as ScrollIndicator } from "./assets/img/scroll-down-indicator.svg";
-import { ReactComponent as DecorEl } from "./assets/img/decor-element.svg";
 
 import Project from "./components/Project/Project";
 import Experience from "./components/Experiences/Experiences";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Hero from "./components/Hero/Hero";
+import About from "./components/About/About";
+import Featured from "./components/Featured/Featured";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
+import Gallery from "./components/Gallery/Gallery";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,19 +36,6 @@ function App() {
   let ref = useRef(null);
   let featuredRef = useRef(null);
 
-  let lsOptions = {
-    smooth: true,
-  }
-
-	console.log(projects);
-
-	const removeDuplicatedCategories = (a) => {
-		var seen = {};
-		return a.filter(function (item) {
-			return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-		});
-	};
-
 	const categories = [
 		...new Set(
 			projects.map((project) => {
@@ -75,7 +45,6 @@ function App() {
 	].flat(1);
 
 	let filteredTags = removeDuplicatedCategories(categories);
-	console.log(filteredTags);
 
   useLocoScroll(true);
 
@@ -92,98 +61,28 @@ function App() {
         scroller: "[data-scroll-container]",
         start: "center 20%",
         end: "center 50%",
-        markers: true
+        markers: false
       }
     })
   }, []);
 
 	return (
       <div className="App" ref={ref} data-scroll-container>
-        <Navbar />
-        <section className="hero" id="hero-section" data-scroll-section>
-          <DecorEl />
-          <h1 data-scroll>
-            <span>Digital Obsessive &</span>
-            <span>Creative Videographer</span>
-          </h1>
-          <a className="btn btn-primary" href="#portfolio-section" data-scroll-to>
-            <span className="text text--one">Scroll  for  more</span>
-            <span className="text text--two">Scroll  for  more</span>
-          </a>
-          <div className="hero__images">
-            <div className="hero__img" data-scroll data-scroll-speed="3">
-              <img src={imgFour} alt="penguins" />
-            </div>
-            <div className="hero__img" data-scroll data-scroll-speed="1">
-              <img src={imgTwo} alt="person filming" />
-            </div>
-            <div className="hero__img" data-scroll data-scroll-speed="3">
-              <img src={imgThree} alt="djing" />
-            </div>
-            <div className="hero__img" data-scroll data-scroll-speed="1">
-              <img src={imgOne} alt="music video filming" />
-            </div>
-          </div>
-        </section>
-        <section className="about container" id="about-section" data-scroll-section>
-          <header className="about__header" data-scroll data-scroll-speed="-1">
-            <p>About me</p>
-            <h2>
-              <p>Capturing engaging and </p>
-              <p>intimate narratives via the </p>
-              <p>
-                medium of 
-                <p className="sketch">
-                  <span> video</span>
-                </p>
-              </p>
-            </h2>
-          </header>
-          <div className="about__body">
-            <div className="about__content">
-              <p>
-                Vorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Etiam eu turpis molestie, dictum est a, mattis
-                tellus. Sed dignissim, metus nec fringilla accumsan,
-                risus sem sollicitudin lacus, ut interdum tellus
-                elit sed risus. Maecenas eget condimentum velit, sit
-                amet feugiat lectus. Class aptent taciti sociosqu ad
-                litora torquent per conubia nostra, per inceptos
-                himenaeos. Praesent auctor purus luctus enim
-                egestas, ac scelerisque ante pulvinar. Donec ut
-                rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor
-                urna. Curabitur vel bibendum lorem. Morbi convallis
-                convallis diam sit amet lacinia. Aliquam in
-                elementum tellus.
-              </p>
-              <p>
-                Curabitur tempor quis eros tempus lacinia. Nam
-                bibendum pellentesque quam a convallis. Sed ut
-                vulputate nisi. Integer in felis sed leo vestibulum
-                venenatis. Suspendisse quis arcu sem. Aenean feugiat
-                ex eu vestibulum vestibulum.
-              </p>
-              <a className="btn btn-secondary" href="#contact-section" data-scroll-to>
-                <span className="text text--one">Get in touch</span>
-                <span className="text text--two">Get in touch</span>
-              </a>
-            </div>
-            <div className="about__image">
-              <img src={Selfie} alt="picture of me" />
-              <ScrollIndicator className="scroll-indicator" />
-            </div>
-          </div>
-        </section>
-        <section className="featured container" ref={featuredRef} data-scroll-section>
-          <MediaPlayer
-            src="https://media-files.vidstack.io/720p.mp4"
-            poster="https://media-files.vidstack.io/poster.png"
-            controls
-          >
-            {/* ^ remove `controls` attribute if you're designing a custom UI */}
-            <MediaOutlet />
-          </MediaPlayer>
-        </section>
+        {/* <AnimatedCursor 
+          outerStyle={{
+          borderRadius: "1000px",
+          border: "1px solid #ffffff"
+        }}
+        outerAlpha={0.3} 
+        outerScale={3}
+          innerStyle={{
+            backgroundColor: "#ffffff"
+          }}
+          hasBlendMode={true}
+        /> */}
+        <Hero />
+        <About />
+        <Featured />
         <section className="portfolio container" id="portfolio-section" data-scroll-section>
           <h2>My work</h2>
           <Filters
@@ -216,58 +115,7 @@ function App() {
             );
           })}
         </section>
-        <section className="gallery" data-scroll-section>
-          <div className="decor-el-container">
-            <DecorEl />
-          </div>
-          <h2>Gallery</h2>
-          <div className="swiper container" data-scroll>
-            {/* <div className="swiper-wrapper">
-              {gallery.map(img => {
-                return <Swiper>
-
-                </Swiper>
-              })}
-            </div> */}
-            <Swiper
-              breakpoints={{
-                768: {
-                  slidesPerView: 2,
-                },
-                992: {
-                  slidesPerView: 3
-                }
-              }}
-              slidesPerView={1}
-              spaceBetween={30}
-              direction={"horizontal"}
-              transition={"fade"}
-              modules={[Navigation, EffectFade]}
-              speed={300}
-              navigation={{
-                prevEl: ".swiper-button-prev",
-                nextEl: ".swiper-button-next",
-              }}
-              loop={true}
-              grabCursor={true}
-              watchOverflow={true}
-              onSlideChange={() => console.log("slide changed")} 
-              centeredSlides={false}
-              centerInsufficientSlides={true}
-              initialSlide={1}
-            >
-              {gallery.map(img => {
-                return <SwiperSlide key={uuid()}>
-                  <img className="gallery__image" src={img.image} alt="" />
-                </SwiperSlide>
-              })}
-            </Swiper>
-            <div className="swiper-buttons">
-              <div className="swiper-button-prev"></div>
-              <div className="swiper-button-next"></div>
-            </div>
-          </div>
-        </section>
+        <Gallery />
         <Contact />
         <Footer />
       </div>

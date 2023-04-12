@@ -1,13 +1,16 @@
 import "./Navbar.scss";
+import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ setMobileNavOpen, mobileNavOpen }) {
 	return (
 		<header className="navbar" id="navbar">
 			<div className="navbar-wrapper container">
 				<nav className="navbar__nav-links">
 					<ul>
 						<li className="navbar__nav-link">
-							<a href="">Home</a>
+							<Link to="/">
+								Home
+							</Link>
 						</li>
 						<li className="navbar__nav-link">
 							<a href="#about-section">About</a>
@@ -20,10 +23,10 @@ function Navbar() {
 						</li>
 					</ul>
 				</nav>
-				<a className="navbar__logo" href="">
+				<a className="navbar__logo" href="#">
 					Oli Crossland
 				</a>
-				<nav className="navbar__nav-links">
+				<nav className={mobileNavOpen ? "navbar__nav-links navbar__nav-links--active" : "navbar__nav-links"}>
 					<ul>
 						<li className="navbar__nav-link">
 							<a href="">Instagram</a>
@@ -37,7 +40,7 @@ function Navbar() {
 						</a>
 					</ul>
 				</nav>
-				<button className="navbar__mobile-nav-toggler">
+				<button className="navbar__mobile-nav-toggler" onClick={() => setMobileNavOpen(!mobileNavOpen)}>
 					<div className="line"></div>
 					<div className="line"></div>
 					<div className="line"></div>

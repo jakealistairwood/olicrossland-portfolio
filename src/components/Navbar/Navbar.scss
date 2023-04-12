@@ -61,11 +61,18 @@
         display: none;
         
         @include for-mobiles-down {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flexbox(column, center, center);
+            row-gap: 0.5rem;
             height: 3rem;
             width: 3rem;
+            background-color: transparent;
+            border: none;
+
+            .line {
+                height: 1px;
+                width: 30px;
+                background-color: $secondary;
+            }
         }
     }
 }
