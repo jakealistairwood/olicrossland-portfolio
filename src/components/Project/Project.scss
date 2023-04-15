@@ -21,6 +21,11 @@
         height: 100%;
         width: 100%;
         padding: 3rem 3rem 1.5rem;
+
+        @include for-mobiles-down {
+            padding: 0;
+            padding-inline: 1rem;
+        }
     }
 
     @include for-mobiles-down {

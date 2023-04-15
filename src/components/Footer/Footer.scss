@@ -17,6 +17,12 @@
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
+
+		@include for-mobiles-down {
+			position: static;
+			left: unset;
+			transform: unset;
+		}
 	}
 
 	* {

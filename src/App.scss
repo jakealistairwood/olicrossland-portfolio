@@ -65,6 +65,10 @@ h2 {
 /* Swiper */
 .swiper {
   height: 100%;
+
+  @include for-mobiles-down {
+    width: 90%;
+  }
 }
 
 .swiper-slide {
@@ -329,6 +333,8 @@ h2 {
   img {
     height: 100%;
     object-fit: cover;
+    max-width: 100%;
+    display: block;
   }
 }
 
