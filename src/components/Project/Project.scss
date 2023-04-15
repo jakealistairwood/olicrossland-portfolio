@@ -2,16 +2,26 @@
 @use "../../assets/styles/mixins/media-query" as *;
 
 .project {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    position: relative;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-end;
+    // position: relative;
     aspect-ratio: 16/9;
     object-fit: cover;
-    padding: 3rem 3rem 1.5rem;
+    // padding: 3rem 3rem 1.5rem;
     background-repeat: no-repeat;
     border-radius: 12px;
     max-height: 320px;
+    position: relative;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        width: 100%;
+        padding: 3rem 3rem 1.5rem;
+    }
 
     @include for-mobiles-down {
        padding: 2rem 1rem;

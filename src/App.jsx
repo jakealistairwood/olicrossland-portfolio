@@ -7,12 +7,11 @@ import useLocoScroll from "./hooks/useLocoScroll";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/src/locomotive-scroll.scss";
 import gsap from "gsap";
-import AnimatedCursor from "react-animated-cursor";
 
 import { removeDuplicatedCategories } from "./assets/utils/helpers";
 
 // Framer
-import { AnimatePresence, AnimateSharedLayout, LayoutGroup } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, LayoutGroup, motion } from "framer-motion";
 
 import Filters from "./components/Filters/Filters";
 
@@ -23,8 +22,9 @@ import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Featured from "./components/Featured/Featured";
 import Contact from "./components/Contact/Contact";
-import Footer from "./components/Footer/Footer";
 import Gallery from "./components/Gallery/Gallery";
+
+import { fadeElementInAndUp, staggerChildElements } from "./assets/plugins/framer/animations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,34 +52,26 @@ function App() {
 		setFilteredProjects(projectsData);
 	}, []);
 
-  useEffect(() => {
-    console.log(featuredRef);
-    let featuredVideo = featuredRef.current;
-    gsap.to(featuredVideo, {
-      scrollTrigger: {
-        trigger: featuredVideo,
-        scroller: "[data-scroll-container]",
-        start: "center 20%",
-        end: "center 50%",
-        markers: false
-      }
-    })
-  }, []);
+  // useEffect(() => {
+  //   let featuredVideo = featuredRef.current;
+  //   gsap.to(featuredVideo, {
+  //     scrollTrigger: {
+  //       trigger: featuredVideo,
+  //       scroller: "[data-scroll-container]",
+  //       start: "center 20%",
+  //       end: "center 50%",
+  //       markers: false
+  //     }
+  //   })
+  // }, []);
+
+  let motionStagger = staggerChildElements(0.6);
+  
+  let fadeElementsAnimation = fadeElementInAndUp(20, 0.6); 
 
 	return (
+    <AnimatePresence mode="wait">
       <div className="App" ref={ref} data-scroll-container>
-        {/* <AnimatedCursor 
-          outerStyle={{
-          borderRadius: "1000px",
-          border: "1px solid #ffffff"
-        }}
-        outerAlpha={0.3} 
-        outerScale={3}
-          innerStyle={{
-            backgroundColor: "#ffffff"
-          }}
-          hasBlendMode={true}
-        /> */}
         <Hero />
         <About />
         <Featured />
@@ -92,20 +84,11 @@ function App() {
             tagSelected={activeFilter}
             setTagSelected={setActiveFilter}
           />
-          {/* <motion.div layout className="portfolio__projects" key="projectImage">
-            <AnimatePresence>
-              {filteredProjects.map((project) => {
-                return <Project key={uuid()} project={project} />;
-              })}
-            </AnimatePresence>
-          </motion.div> */}
-          <div className="portfolio__projects">
-            <LayoutGroup>
-              <AnimatePresence>
-                {filteredProjects.map((project) => <Project key={uuid()} project={project} />)}
-              </AnimatePresence>
-            </LayoutGroup>
-          </div>
+          <AnimatePresence>
+            <motion.div layout initial="hidden" animate="visible" className="portfolio__projects">
+                {filteredProjects.map((project) => <Project staggerElements={motionStagger} fadeElementsIn={fadeElementsAnimation} key={uuid()} project={project} />)}
+            </motion.div>
+          </AnimatePresence>
         </section>
         <section className="experiences container" data-scroll-section>
           <h2>Experiences</h2>
@@ -117,8 +100,9 @@ function App() {
         </section>
         <Gallery />
         <Contact />
-        <Footer />
+        {/* <Footer /> */}
       </div>
+    </AnimatePresence>
 	);
 }
 

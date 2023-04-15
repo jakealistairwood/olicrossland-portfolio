@@ -16,6 +16,14 @@ body {
   color: $secondary;
 }
 
+#root {
+  display: grid;
+  grid-template-areas: "header"
+  "content"
+  "footer";
+  min-height: 100vh;
+}
+
 a, button {
   cursor: pointer;
 }
@@ -43,7 +51,7 @@ h2 {
   @include center-horizontally(1280px);
 
   @include for-sm-desktop {
-    @include center-horizontally(1080px);
+    @include center-horizontally(90%);
   }
   @include for-mobiles-down {
     @include center-horizontally(95%);
@@ -300,4 +308,8 @@ h2 {
     height: 100%;
     object-fit: cover;
   }
+}
+
+.project-index {
+  grid-area: content;
 }

@@ -1,0 +1,87 @@
+@use "../../assets/styles/abstract/variables" as *;
+@use "../../assets/styles/mixins/media-query" as *;
+
+.project-index {
+    display: flex;
+    flex-direction: column;
+    padding-block: 7rem;
+
+    h1 {
+        font-size: 7rem;
+        font-family: $primary-font;
+        letter-spacing: -4px;
+        line-height: 0.85;
+        font-weight: 500;
+        text-transform: initial;
+
+        span {
+            opacity: 0.3;
+        }
+
+        @media screen and (max-width: 992px) {
+            font-size: 5rem;
+        }
+
+        @include for-mobiles-down {
+          font-size: 2rem;
+          letter-spacing: -1px;
+          line-height: 0.5;
+        }
+    }
+
+    &__tags {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 3rem;
+        max-width: 400px;
+        flex-wrap: wrap;
+    }
+
+    &__tag {
+        padding: 0.5em;
+        border-radius: 1000px;
+        border: 1px solid $secondary;
+        font-size: 0.7rem;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    &__content-body {
+        max-width: 60%;
+        margin-left: auto;
+        margin-top: -3rem;
+
+        @media screen and (max-width: 1080px) {
+            max-width: 90%;
+            margin-inline: auto;
+            margin-top: 4rem;
+        }
+    }
+
+    &__description {
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.2rem;
+        text-align: justify;
+
+        p {
+            margin-block: 1.5rem;
+        }
+    }
+
+    &__back-btn {
+        background-color: transparent;
+        letter-spacing: 0;
+    }
+
+    &__cover {
+        img {
+            width: 40%;
+        }
+    }
+
+    .featured {
+        padding-bottom: 0;
+    }
+}

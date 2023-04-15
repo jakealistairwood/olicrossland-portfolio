@@ -6,6 +6,7 @@
 	padding-block: 2rem;
 	border-top: 1px solid #505050;
 	position: relative;
+	grid-area: footer;
 
 	@include for-mobiles-down {
 		flex-direction: column;
