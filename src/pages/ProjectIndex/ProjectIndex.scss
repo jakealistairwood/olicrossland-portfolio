@@ -59,6 +59,7 @@
         max-width: 60%;
         margin-left: auto;
         margin-top: -3rem;
+        margin-bottom: 4rem;
 
         @media screen and (max-width: 1080px) {
             max-width: 90%;
@@ -89,8 +90,11 @@
     }
 
     &__back-btn {
-        background-color: transparent;
+        background-color: $secondary;
+        color: $primary;
         letter-spacing: 0;
+        font-weight: 600;
+        margin-top: 3rem;
 
         @include for-mobiles-down {
             font-size: 0.8rem;
@@ -105,5 +109,9 @@
 
     .featured {
         padding-bottom: 0;
+    }
+
+    &__audio {
+        border: none;
     }
 }

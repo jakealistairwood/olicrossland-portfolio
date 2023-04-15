@@ -17,17 +17,26 @@
         min-width: 6em;
         width: unset;
         background-color: transparent;
+        color: $secondary;
         border: 1px solid $secondary;
         letter-spacing: 0;
+        transition: all 0.3s ease;
 
         @include for-mobiles-down {
             font-size: 0.6rem;
         }
 
-        &--active {
-            background-color: #7EFFC9;
+        &:hover,
+        &:focus {
+            background-color: $accent;
+            border-color: $accent;
             color: $primary;
-            border-color: #7EFFC9;
+        }
+
+        &--active {
+            background-color: $accent;
+            color: $primary;
+            border-color: $accent;
         }
     }
 }

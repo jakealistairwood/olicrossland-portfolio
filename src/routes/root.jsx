@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import AnimatedCursor from "react-animated-cursor";
+import ScrollToTop from '../assets/utils/scrollToTop';
 
 function Root() {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -20,6 +21,7 @@ function Root() {
           hasBlendMode={true}
         />
         <Navbar mobileNavOpen={mobileNavOpen} setMobileNavOpen={setMobileNavOpen} />
+        <ScrollToTop />
         <Outlet />
         <Footer />
     </>;

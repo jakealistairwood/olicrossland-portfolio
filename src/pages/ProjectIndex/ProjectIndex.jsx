@@ -43,6 +43,12 @@ function ProjectIndex() {
 				duration: 0.6,
 			},
 		},
+        exit: {
+            opacity: 0,
+            transition: {
+                duration: 0.6
+            }
+        }
 	};
 
 	return (
@@ -50,8 +56,9 @@ function ProjectIndex() {
 			<motion.div
 				initial="initial"
                 animate="animate"
+                exit="exit"
 				className="project-index container"
-                
+                mode="wait"
 			>
                 <motion.div variants={stagger} className="project-index__content">
                     <motion.h1 variants={fadeInElement}>
@@ -76,7 +83,10 @@ function ProjectIndex() {
                         </motion.button>
                     </motion.div>
                     <motion.div className="project-index__media">
-                        <Featured />
+                        {project.type.toLowerCase() == "videography" 
+                        ? <Featured /> 
+                        : <iframe className="project-index__audio" src={project.mediaUpload} width="100%" height="480" allow="autoplay"></iframe>
+                        }
                     </motion.div>
                 </motion.div>
 			</motion.div>

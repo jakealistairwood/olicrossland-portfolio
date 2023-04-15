@@ -84,18 +84,20 @@ function App() {
           setTagSelected={setActiveFilter}
         />
         <AnimatePresence>
-          <motion.div layout initial="hidden" animate="visible" className="portfolio__projects">
+          <motion.div initial="hidden" animate="visible" className="portfolio__projects">
               {filteredProjects.map((project) => <Project staggerElements={motionStagger} fadeElementsIn={fadeElementsAnimation} key={uuid()} project={project} />)}
           </motion.div>
         </AnimatePresence>
       </section>
       <section className="experiences container" data-scroll-section>
         <h2>Experiences</h2>
-        {experiences.map((experience) => {
-          return (
-            <Experience key={uuid()} experience={experience} />
-          );
-        })}
+        <AnimatePresence>
+          {experiences.map((experience) => {
+            return (
+              <Experience key={uuid()} experience={experience} />
+            );
+          })}
+        </AnimatePresence>
       </section>
       <Gallery />
       <Contact />
