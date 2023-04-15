@@ -70,39 +70,37 @@ function App() {
   let fadeElementsAnimation = fadeElementInAndUp(20, 0.6); 
 
 	return (
-    <AnimatePresence mode="wait">
-      <div className="App" ref={ref} data-scroll-container>
-        <Hero />
-        <About />
-        <Featured />
-        <section className="portfolio container" id="portfolio-section" data-scroll-section>
-          <h2>My work</h2>
-          <Filters
-            projects={projects}
-            tags={filteredTags}
-            setFilteredProjects={setFilteredProjects}
-            tagSelected={activeFilter}
-            setTagSelected={setActiveFilter}
-          />
-          <AnimatePresence>
-            <motion.div layout initial="hidden" animate="visible" className="portfolio__projects">
-                {filteredProjects.map((project) => <Project staggerElements={motionStagger} fadeElementsIn={fadeElementsAnimation} key={uuid()} project={project} />)}
-            </motion.div>
-          </AnimatePresence>
-        </section>
-        <section className="experiences container" data-scroll-section>
-          <h2>Experiences</h2>
-          {experiences.map((experience) => {
-            return (
-              <Experience key={uuid()} experience={experience} />
-            );
-          })}
-        </section>
-        <Gallery />
-        <Contact />
-        {/* <Footer /> */}
-      </div>
-    </AnimatePresence>
+    <div className="App" ref={ref} data-scroll-container>
+      <Hero />
+      <About />
+      <Featured />
+      <section className="portfolio container" id="portfolio-section" data-scroll-section>
+        <h2>My work</h2>
+        <Filters
+          projects={projects}
+          tags={filteredTags}
+          setFilteredProjects={setFilteredProjects}
+          tagSelected={activeFilter}
+          setTagSelected={setActiveFilter}
+        />
+        <AnimatePresence>
+          <motion.div layout initial="hidden" animate="visible" className="portfolio__projects">
+              {filteredProjects.map((project) => <Project staggerElements={motionStagger} fadeElementsIn={fadeElementsAnimation} key={uuid()} project={project} />)}
+          </motion.div>
+        </AnimatePresence>
+      </section>
+      <section className="experiences container" data-scroll-section>
+        <h2>Experiences</h2>
+        {experiences.map((experience) => {
+          return (
+            <Experience key={uuid()} experience={experience} />
+          );
+        })}
+      </section>
+      <Gallery />
+      <Contact />
+      {/* <Footer /> */}
+    </div>
 	);
 }
 

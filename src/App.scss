@@ -45,6 +45,10 @@ h2 {
 
 [data-scroll-container] {
   perspective: 1px;
+
+  @include for-tablets-down {
+    width: 100vw;
+  }
 }
 
 .container {
@@ -105,6 +109,11 @@ h2 {
   margin-top: 5rem;
   padding-bottom: 4rem;
 
+  @include for-mobiles-down {
+    width: 95%;
+    margin-inline: auto;
+  }
+
   h1 {
     display: flex;
     flex-direction: column;
@@ -132,8 +141,21 @@ h2 {
     img {
       filter: grayscale(90%);
     }
+    @include for-mobiles-down {
+      &:nth-child(even) {
+        padding-top: 2rem;
+      }
+    }
   }
 
+  .btn-primary {
+    @include for-mobiles-down {
+      font-size: 0.8rem;
+      letter-spacing: 0;
+      padding-inline: 2em;
+      width: 12em;
+    }
+  }
 }
 
 .about {

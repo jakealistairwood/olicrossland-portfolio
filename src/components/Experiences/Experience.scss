@@ -1,3 +1,5 @@
+@use "../../assets/styles/mixins/media-query" as *;
+
 .experience {
     display: flex;
     justify-content: space-between;
@@ -6,6 +8,19 @@
     padding-block: 2rem;
     border-bottom: 1px solid #505050;
 
+    @include for-mobiles-down {
+      flex-direction: column;
+      align-items: flex-start;
+
+      &__date {
+        margin-top: 1rem;
+        text-transform: uppercase;
+        font-size: 2rem;
+        letter-spacing: -2px;
+        opacity: 0.2;
+      }
+    }
+
     &__role {
       display: flex;
       flex-direction: column;
@@ -13,5 +28,10 @@
 
     h3 {
       font-size: 1.8rem;
+
+      @include for-mobiles-down {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+      }
     }
   }
