@@ -6,7 +6,7 @@
     align-items: center;
     gap: 0.5rem;
 
-    @include for-mobiles-down {
+    @include for-tablets-down {
         flex-wrap: wrap;
     }
 

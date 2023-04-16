@@ -7,8 +7,9 @@
     // justify-content: flex-end;
     // position: relative;
     aspect-ratio: 16/9;
-    object-fit: cover;
+    // object-fit: cover;
     // padding: 3rem 3rem 1.5rem;
+    background-size: cover;
     background-repeat: no-repeat;
     border-radius: 12px;
     max-height: 320px;
@@ -38,6 +39,10 @@
         font-weight: 500;
         line-height: 1.1;
 
+        @include for-tablets-down {
+            font-size: 1.6rem;
+        }
+
         @include for-mobiles-down {
             font-size: 1.4rem;
         }
@@ -55,7 +60,7 @@
         gap: 0.5rem;
         margin-top: 1rem;
 
-        @include for-mobiles-down {
+        @include for-tablets-down {
             display: none;
         }
     }

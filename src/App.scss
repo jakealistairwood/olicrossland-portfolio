@@ -58,7 +58,7 @@ h2 {
     @include center-horizontally(90%);
   }
   @include for-mobiles-down {
-    @include center-horizontally(95%);
+    @include center-horizontally(90%);
   }
 }
 
@@ -113,7 +113,7 @@ h2 {
   margin-top: 5rem;
   padding-bottom: 4rem;
 
-  @include for-mobiles-down {
+  @include for-tablets-down {
     width: 95%;
     margin-inline: auto;
   }
@@ -145,7 +145,7 @@ h2 {
     img {
       filter: grayscale(90%);
     }
-    @include for-mobiles-down {
+    @include for-tablets-down {
       &:nth-child(even) {
         padding-top: 2rem;
       }
@@ -179,6 +179,10 @@ h2 {
         font-weight: 400;
         text-transform: initial;
 
+        @include for-tablets-down {
+          font-size: 4.4rem;
+        }
+
         @include for-mobiles-down {
           font-size: 2rem;
           letter-spacing: -1px;
@@ -198,8 +202,9 @@ h2 {
   &__body {
     display: flex;
 
-    @include for-mobiles-down {
+    @include for-tablets-down {
       flex-direction: column-reverse;
+      position: relative;
       row-gap: 4rem;
     }
   }
@@ -208,7 +213,7 @@ h2 {
     max-width: 50%;
     padding-left: 10rem;
 
-    @include for-mobiles-down {
+    @include for-tablets-down {
       max-width: 100%;
       padding-left: 0;
     }
@@ -240,11 +245,10 @@ h2 {
     top: -280px;
     z-index: -1;
 
-    @include for-mobiles-down {
-      max-width: unset;
-      position: relative;
-      height: auto;
+    @include for-tablets-down {
+      height: unset;
       top: 0;
+      margin-inline: auto;
     }
 
     img {
@@ -261,10 +265,9 @@ h2 {
         width: 80%;
       }
 
-      @include for-mobiles-down {
-        width: 40%;
-        right: 0px;
-        bottom: -110px;
+      @include for-tablets-down {
+        display: none;
+        height: unset;
       }
     }
   }
@@ -287,7 +290,7 @@ h2 {
     }
   }
   &__projects {
-    --min-column-size: 30rem;
+    --min-column-size: 22rem;
     margin-top: 3rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(var(--min-column-size), 100%), 1fr));

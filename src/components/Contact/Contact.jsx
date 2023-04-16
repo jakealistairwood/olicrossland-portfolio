@@ -1,3 +1,4 @@
+import Footer from "../Footer/Footer";
 import "./Contact.scss";
 
 function Contact() {

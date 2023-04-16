@@ -41,7 +41,6 @@ function Project({ project, fadeElementIn, staggerElements }) {
 	return (
     <motion.div
       className="project"
-      layout
       variants={fadeElementIn}
       whileTap={{ scale: 0.95 }}
       whileHover={{ 
@@ -58,12 +57,12 @@ function Project({ project, fadeElementIn, staggerElements }) {
     >
       <Link className="project__container" to={`projects/${projectUrl}`}>
           {/* <img src={project.image} alt="" className="project__image" /> */}
-          <motion.div variants={staggerElements} className="project__info">
-            <motion.h4 whileInView={fadeElementIn}>{project.subtitle}</motion.h4>
-            <motion.h3 variants={fadeElementIn}>{project.title}</motion.h3>
-            <motion.div variants={staggerElements} className="project__tags">
+          <motion.div className="project__info">
+            <motion.h4>{project.subtitle}</motion.h4>
+            <motion.h3>{project.title}</motion.h3>
+            <motion.div className="project__tags">
               {project.tags.map(tag => {
-                return <motion.p variants={fadeElementIn} key={uuid()} className="project__tag">{tag}</motion.p>
+                return <motion.p key={uuid()} className="project__tag">{tag}</motion.p>
               })}
             </motion.div>
           </motion.div>

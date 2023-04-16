@@ -3,10 +3,10 @@ import "./ProjectIndex.scss";
 import { motion, AnimatePresence } from "framer-motion";
 import { projectsData as projects } from "../../data/projects";
 import Featured from "../../components/Featured/Featured";
+import { ReactComponent as ScrollIndicator } from "../../assets/img/scroll-down-indicator.svg";
 
 function ProjectIndex() {
 	let { projectId } = useParams();
-	console.log(projectId, projects);
 
     const navigate = useNavigate();
 
@@ -19,6 +19,8 @@ function ProjectIndex() {
 	};
 
 	let project = getProject(projectId, projects)[0];
+
+    console.log(project.mediaUpload);
 
 	let stagger = {
 		animate: {
@@ -51,6 +53,20 @@ function ProjectIndex() {
         }
 	};
 
+    const checkProjectHasUpload = () => {
+        if(!project.mediaUpload) return;
+
+        if(project.mediaUpload.toLowerCase() == "videography") {
+            return <motion.div className="project-index__media">
+                    <iframe className="project-index__video" src={project.mediaUpload} width="100%" height="640" allow="autoplay"></iframe>
+                </motion.div>
+        } else {
+            return <motion.div className="project-index__audio">
+                    <iframe className="project-index__audio" src={project.mediaUpload} width="100%" height="480" allow="autoplay"></iframe>
+                </motion.div>
+        }
+    }
+
 	return (
 		<AnimatePresence>
 			<motion.div
@@ -60,15 +76,18 @@ function ProjectIndex() {
 				className="project-index container"
                 mode="wait"
 			>
+
                 <motion.div variants={stagger} className="project-index__content">
-                    <motion.h1 variants={fadeInElement}>
-                        {project.title} <span>with {project.subtitle}</span>
-                    </motion.h1>
-                    <motion.div variants={stagger} className="project-index__tags">
-                        {project.tags.map(tag => {
-                            return <motion.span variants={fadeInElement} className="project-index__tag">{tag}</motion.span>
-                        })}
-                    </motion.div>
+                    <motion.header className="project-index__header" variant={stagger}>
+                        <motion.h1 variants={fadeInElement}>
+                            {project.title} <span>with {project.subtitle}</span>
+                        </motion.h1>
+                        <motion.div variants={stagger} className="project-index__tags">
+                            {project.tags.map(tag => {
+                                return <motion.span variants={fadeInElement} className="project-index__tag">{tag}</motion.span>
+                            })}
+                        </motion.div>
+                    </motion.header>
                     {/* <motion.p variants={fadeInElement}>{project.description}</motion.p> */}
                     <motion.div className="project-index__content-body" variants={fadeInElement}>
                         <motion.p className="project-index__description" dangerouslySetInnerHTML={{ __html: project.description }} />
@@ -82,12 +101,7 @@ function ProjectIndex() {
                             <span class="text text--two">Go back</span>
                         </motion.button>
                     </motion.div>
-                    <motion.div className="project-index__media">
-                        {project.type.toLowerCase() == "videography" 
-                        ? <Featured /> 
-                        : <iframe className="project-index__audio" src={project.mediaUpload} width="100%" height="480" allow="autoplay"></iframe>
-                        }
-                    </motion.div>
+                    {checkProjectHasUpload()}
                 </motion.div>
 			</motion.div>
 		</AnimatePresence>

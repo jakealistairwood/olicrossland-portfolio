@@ -1,7 +1,7 @@
 import "./Footer.scss";
 
 function Footer() {
-    return <footer className="footer container" data-scroll-section>
+    return <footer className="footer container">
     <small className="footer__copyright">
       &copy; Oli Crossland | 2023
     </small>
@@ -11,7 +11,7 @@ function Footer() {
     >
       olicrossland@gmail.com
     </a>
-    <a className="footer__scroll-btn" href="#hero-section" data-scroll-to>
+    <a className="footer__scroll-btn" href="#hero-section">
       <span>Back to top</span>
     </a>
   </footer>;

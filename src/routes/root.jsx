@@ -4,9 +4,11 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import AnimatedCursor from "react-animated-cursor";
 import ScrollToTop from '../assets/utils/scrollToTop';
+import useLocoScroll from '../hooks/useLocoScroll';
 
 function Root() {
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
     return <>
         <AnimatedCursor 
           outerStyle={{
@@ -23,7 +25,6 @@ function Root() {
         <Navbar mobileNavOpen={mobileNavOpen} setMobileNavOpen={setMobileNavOpen} />
         <ScrollToTop />
         <Outlet />
-        <Footer />
     </>;
 }
 

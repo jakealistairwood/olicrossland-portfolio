@@ -23,6 +23,7 @@ import About from "./components/About/About";
 import Featured from "./components/Featured/Featured";
 import Contact from "./components/Contact/Contact";
 import Gallery from "./components/Gallery/Gallery";
+import Footer from "./components/Footer/Footer";
 
 import { fadeElementInAndUp, staggerChildElements } from "./assets/plugins/framer/animations";
 
@@ -101,7 +102,7 @@ function App() {
       </section>
       <Gallery />
       <Contact />
-      {/* <Footer /> */}
+      <Footer />
     </div>
 	);
 }
