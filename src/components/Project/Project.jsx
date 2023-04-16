@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import { convertStrToUrl } from "../../assets/utils/helpers";
 
-function Project({ project, fadeElementIn, staggerElements }) {
+function Project({ project }) {
 
   let projectUrl = convertStrToUrl(project.title);
 
@@ -41,32 +41,30 @@ function Project({ project, fadeElementIn, staggerElements }) {
 	return (
     <motion.div
       className="project"
-      variants={fadeElementIn}
       whileTap={{ scale: 0.95 }}
-      whileHover={{ 
-        scale: 1.02, 
-        transition: {
-          duration: 0.3,
-          ease: easing
-        } 
-      }}
       href="#"
-      style={{
-        backgroundImage: `url(${project.image})`
-      }}
     >
-      <Link className="project__container" to={`projects/${projectUrl}`}>
-          {/* <img src={project.image} alt="" className="project__image" /> */}
-          <motion.div className="project__info">
-            <motion.h4>{project.subtitle}</motion.h4>
-            <motion.h3>{project.title}</motion.h3>
-            <motion.div className="project__tags">
-              {project.tags.map(tag => {
-                return <motion.p key={uuid()} className="project__tag">{tag}</motion.p>
-              })}
+      <motion.div className="project__container" whileHover={{ 
+        scale: 1.05, 
+        transition: {
+          duration: 0.4,
+        } 
+      }} style={{
+        backgroundImage: `url(${project.image})`
+      }}>
+        <Link className="project__inner-container" to={`projects/${projectUrl}`}>
+            {/* <img src={project.image} alt="" className="project__image" /> */}
+            <motion.div className="project__info">
+              <motion.h4>{project.subtitle}</motion.h4>
+              <motion.h3>{project.title}</motion.h3>
+              <motion.div className="project__tags">
+                {project.tags.map(tag => {
+                  return <motion.p key={uuid()} className="project__tag">{tag}</motion.p>
+                })}
+              </motion.div>
             </motion.div>
-          </motion.div>
-      </Link>
+        </Link>
+      </motion.div>
     </motion.div>
 	);
 }

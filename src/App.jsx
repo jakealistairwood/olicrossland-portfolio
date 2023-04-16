@@ -66,10 +66,6 @@ function App() {
   //   })
   // }, []);
 
-  let motionStagger = staggerChildElements(0.6);
-  
-  let fadeElementsAnimation = fadeElementInAndUp(20, 0.6); 
-
 	return (
     <div className="App" ref={ref} data-scroll-container>
       <Hero />
@@ -86,7 +82,7 @@ function App() {
         />
         <AnimatePresence>
           <motion.div initial="hidden" animate="visible" className="portfolio__projects">
-              {filteredProjects.map((project) => <Project staggerElements={motionStagger} fadeElementsIn={fadeElementsAnimation} key={uuid()} project={project} />)}
+              {filteredProjects.map((project) => <Project key={uuid()} project={project} />)}
           </motion.div>
         </AnimatePresence>
       </section>
