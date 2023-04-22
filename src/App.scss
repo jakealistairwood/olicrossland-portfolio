@@ -290,10 +290,10 @@ h2 {
     }
   }
   &__projects {
-    --min-column-size: 28rem;
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(var(--min-column-size), 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+    // grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 
     @include for-tablets-down {

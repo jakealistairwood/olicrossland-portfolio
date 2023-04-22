@@ -26,6 +26,7 @@ import Gallery from "./components/Gallery/Gallery";
 import Footer from "./components/Footer/Footer";
 
 import { fadeElementInAndUp, staggerChildElements } from "./assets/plugins/framer/animations";
+import imageLoaded from "imagesloaded";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,6 +47,7 @@ function App() {
 	].flat(1);
 
 	let filteredTags = removeDuplicatedCategories(categories);
+
 
   useLocoScroll(true);
 
@@ -80,11 +82,11 @@ function App() {
           tagSelected={activeFilter}
           setTagSelected={setActiveFilter}
         />
-        <AnimatePresence>
-          <motion.div initial="hidden" animate="visible" className="portfolio__projects">
+        <motion.div layout className="portfolio__projects">
+            <AnimatePresence>
               {filteredProjects.map((project) => <Project key={uuid()} project={project} />)}
-          </motion.div>
-        </AnimatePresence>
+            </AnimatePresence>
+        </motion.div>
       </section>
       <section className="experiences container" data-scroll-section>
         <h2>Experiences</h2>

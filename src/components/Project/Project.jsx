@@ -43,6 +43,10 @@ function Project({ project }) {
       className="project"
       whileTap={{ scale: 0.95 }}
       href="#"
+      initial={{ opacity: 0, transition: { duration: 0.2 } }}
+      animate={{ opacity: 1, transition: { duration: 0.2 } }}
+      exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      layout
     >
       <motion.div className="project__container" whileHover={{ 
         scale: 1.05, 
@@ -50,10 +54,11 @@ function Project({ project }) {
           duration: 0.4,
         } 
       }} style={{
-        backgroundImage: `url(${project.image})`
+        backgroundImage: `url(${project.image})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover"
       }}>
         <Link className="project__inner-container" to={`projects/${projectUrl}`}>
-            {/* <img src={project.image} alt="" className="project__image" /> */}
             <motion.div className="project__info">
               <motion.h4>{project.subtitle}</motion.h4>
               <motion.h3>{project.title}</motion.h3>

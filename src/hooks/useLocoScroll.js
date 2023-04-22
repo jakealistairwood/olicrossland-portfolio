@@ -3,6 +3,7 @@ import "locomotive-scroll/src/locomotive-scroll.scss";
 import { useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import imageLoaded from "imagesloaded";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,8 +16,12 @@ export default function useLocoScroll(start) {
             el: scrollEl,
             smooth: true,
             multiplier: 1,
-            class: "is-revealed"
+            class: "is-revealed",
         });
+
+        imageLoaded(scrollEl, { background: true }, function() {
+            locoScroll.update();
+        })[1];
 
         locoScroll.on("scroll", () => {
             ScrollTrigger.update();

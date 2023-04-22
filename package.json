@@ -12,6 +12,7 @@
     "@vidstack/react": "^0.4.2",
     "framer-motion": "^10.10.0",
     "gsap": "^3.11.5",
+    "imagesloaded": "^5.0.0",
     "localforage": "^1.10.0",
     "locomotive-scroll": "^4.1.4",
     "match-sorter": "^6.3.1",
