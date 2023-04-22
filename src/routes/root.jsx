@@ -25,6 +25,7 @@ function Root() {
         <Navbar mobileNavOpen={mobileNavOpen} setMobileNavOpen={setMobileNavOpen} />
         <ScrollToTop />
         <Outlet />
+        {/* <Footer /> */}
     </>;
 }
 

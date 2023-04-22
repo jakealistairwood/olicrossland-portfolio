@@ -7,6 +7,10 @@
 	border-top: 1px solid #505050;
 	position: relative;
 	grid-area: footer;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
 
 	@include for-mobiles-down {
 		flex-direction: column;

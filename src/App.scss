@@ -45,6 +45,7 @@ h2 {
 
 [data-scroll-container] {
   perspective: 1px;
+  position: relative;
 
   @include for-tablets-down {
     width: 100vw;
@@ -276,6 +277,18 @@ h2 {
 .featured {
   padding-top: 6.25rem;
   padding-bottom: 12.5rem;
+
+  &__video {
+    aspect-ratio: 16/9;
+    width: 100%;
+    object-fit: cover;
+
+    iframe {
+      height: 100%;
+      width: 100%;
+      border: none;
+    }
+  }
 }
 
 .portfolio {

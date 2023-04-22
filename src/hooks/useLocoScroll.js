@@ -19,9 +19,9 @@ export default function useLocoScroll(start) {
             class: "is-revealed",
         });
 
-        imageLoaded(scrollEl, { background: true }, function() {
+        /* imageLoaded(scrollEl, { background: true }, function() {
             locoScroll.update();
-        })[1];
+        })[1]; */
 
         locoScroll.on("scroll", () => {
             ScrollTrigger.update();

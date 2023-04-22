@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vidstack/react": "^0.4.2",
     "framer-motion": "^10.10.0",
     "gsap": "^3.11.5",
     "imagesloaded": "^5.0.0",
@@ -20,11 +19,11 @@
     "react-animated-cursor": "^2.5.2",
     "react-dom": "^18.2.0",
     "react-locomotive-scroll": "^0.2.2",
+    "react-player": "^2.12.0",
     "react-router-dom": "^6.10.0",
     "react-uuid": "^2.0.0",
     "sort-by": "^1.2.0",
     "swiper": "^9.2.0",
-    "vidstack": "^0.4.2",
     "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {

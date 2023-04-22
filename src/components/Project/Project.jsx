@@ -43,9 +43,9 @@ function Project({ project }) {
       className="project"
       whileTap={{ scale: 0.95 }}
       href="#"
-      initial={{ opacity: 0, transition: { duration: 0.2 } }}
-      animate={{ opacity: 1, transition: { duration: 0.2 } }}
-      exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       layout
     >
       <motion.div className="project__container" whileHover={{ 
